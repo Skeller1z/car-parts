@@ -1,104 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import C1 from '../../Assets/c1.png';
-import C2 from '../../Assets/c2.jpg';
+import { carParts, CarPart } from './carPartsData';
+import SkeletonLoading from '../Components/SkeletonLoading';
 
-interface CarPart {
-    id: number;
-    name: string;
-    price: number;
-    rating: number;
-    image: string;
-  }
-  
-  const carParts: CarPart[] = [
-    {
-      id: 1,
-      name: 'Brake Pads',
-      price: 49.99,
-      rating: 4.5,
-      image: C1,
-    },
-    {
-      id: 2,
-      name: 'Oil Filter',
-      price: 9.99,
-      rating: 3.8,
-      image: C2,
-    },
-    {
-        id: 3,
-        name: 'Oil Filter',
-        price: 9.99,
-        rating: 3.8,
-        image: C2,
-      },
-      {
-        id: 4,
-        name: 'Oil Filter',
-        price: 9.99,
-        rating: 3.8,
-        image: C2,
-      },
-      {
-        id: 5,
-        name: 'Oil Filter',
-        price: 9.99,
-        rating: 3.8,
-        image: C2,
-      },
-      {
-        id: 6,
-        name: 'Oil Filter',
-        price: 9.99,
-        rating: 3.8,
-        image: C2,
-      },
-      {
-        id: 7,
-        name: 'Oil Filter',
-        price: 9.99,
-        rating: 3.8,
-        image: C2,
-      },
-
-
-    // Add more car parts here...
-  ];
 const Products = () => {
 
-    const [showAll, setShowAll] = useState(false);
+  const [visibleCarParts, setVisibleCarParts] = useState<CarPart[]>([]);
+  const [visibleIndex, setVisibleIndex] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false); // Add loading state
 
+    useEffect(() => {
+      // Initially, show the first batch of items
+      const initialVisibleParts = carParts.slice(0, 10);
+      setVisibleCarParts(initialVisibleParts);
+      setVisibleIndex(initialVisibleParts.length);
+    }, []);
+  
+    const handleScroll = () => {
+      const bottom =
+        Math.ceil(window.innerHeight + window.scrollY) >=
+        document.documentElement.scrollHeight;
+    
+      if (bottom && !loading) { // Check if not loading
+        setLoading(true); // Set loading to true before loading new data
+    
+        // Simulate an async delay to demonstrate loading (replace with your actual data fetching logic)
+        setTimeout(() => {
+          const newVisibleParts = carParts.slice(0, visibleIndex + 10);
+          setVisibleCarParts(newVisibleParts);
+          setVisibleIndex(visibleIndex + 10);
+          setLoading(false); // Set loading to false after loading data
+        }, 1000); // Simulated delay of 1 second
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, [visibleIndex]);
+    
     const handleAddToCart = (carPart: CarPart) => {
       // Implement your logic for adding the car part to the cart
       console.log(`Added ${carPart.name} to cart.`);
     };
-  
-    const visibleCarParts = showAll ? carParts : carParts.slice(0, 4);
-
-    const sliderSettings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 2,
-            },
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 1,
-            },
-          },
-        ],
-      };
-    
       return (
         <>
       <div className="bg-slate-100 min-h-screen p-6" id="products">
@@ -143,17 +88,18 @@ const Products = () => {
               </button>
             </div>
           ))}
-          {!showAll && carParts.length > 4 && (
-            <div className="col-span-full text-center">
-              <button
-                onClick={() => setShowAll(true)}
-                className="text-blue-500 font-bold underline"
-              >
-                See More
-              </button>
-            </div>
-          )}
         </div>
+        {loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
+            {/* Render the SkeletonLoading component when loading */}
+            <SkeletonLoading />
+            <SkeletonLoading />
+            <SkeletonLoading />
+            <SkeletonLoading />
+            <SkeletonLoading />
+            {/* Add more SkeletonLoading components as needed */}
+          </div>
+        )}
       </div>
     </>
       );
