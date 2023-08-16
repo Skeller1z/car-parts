@@ -14,7 +14,6 @@ const Mainpage = (props: Props) => {
         <Navbar/>
         <SubNavbar/>
         <LandingPage/>
-        {/* <ProductDetail/> */}
         <Products/>
         
     </div>

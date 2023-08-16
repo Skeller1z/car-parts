@@ -20,24 +20,24 @@ const LandingPage = () => {
             alt="Car Parts Logo"
           />
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-          <span className="text-4xl font-bold text-orange-500">W</span>elcome to SeatBelt Car Parts
+          <span className="text-4xl font-bold text-orange-500">W</span>elcome to Aparts 
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Find the right parts for your car.
           </p>
         </div>
         <div className="mt-8">
-          <h3 className="text-xl font-semibold text-gray-900 text-center">
+          {/* <h3 className="text-xl font-semibold text-gray-900 text-center">
             Your One-Stop Shop for Car Parts
           </h3>
           <p className="mt-4 text-gray-700">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Sed iaculis elit augue, at accumsan mi imperdiet ut.
-          </p>
+          </p> */}
           <div className="mt-8 text-center">
             <a
               href="#products"
-              className="inline-block bg-orange-500 text-white font-semibold py-2 px-4 rounded hover:bg-orange-600 transition-colors duration-300"
+              className="inline-block bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold py-2 px-4 rounded hover:bg-orange-600 transition-colors duration-300"
             >
               View Our Products
             </a>

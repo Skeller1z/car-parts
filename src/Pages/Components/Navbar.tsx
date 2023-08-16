@@ -7,6 +7,7 @@ import Notifications from './Navmenu/Notifications';
 import Help from './Navmenu/Help';
 import LanguageSelector from './Navmenu/LanguageSelector';
 import Profile from './Navmenu/Profile';
+import { Outlet } from 'react-router-dom';
 type Props = {}
 
 const Navbar = (props: Props) => {
@@ -37,6 +38,7 @@ const Navbar = (props: Props) => {
         <Profile />
       </div>
     </nav>
+    <Outlet/>
     </>
   )
 }

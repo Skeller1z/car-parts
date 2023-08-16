@@ -10,7 +10,7 @@ const SearchInput: React.FC = () => {
       placeholder="Search products..."
       className="bg-gray-800 text-white rounded-l-md py-2 px-4 my-4 focus:outline-none w-full"
     />
-     <button className="bg-blue-500 text-white rounded-r-md py-2 px-4 my-4 hover:bg-blue-600 focus:outline-none">
+     <button className="bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-r-md py-2 px-4 my-4 hover:bg-blue-600 focus:outline-none">
      <FontAwesomeIcon icon={faMagnifyingGlass} />
       </button>
     </div>

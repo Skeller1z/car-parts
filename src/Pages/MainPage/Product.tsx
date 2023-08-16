@@ -5,13 +5,14 @@ import { carParts, CarPart } from './carPartsData';
 import SkeletonLoading from '../Components/SkeletonLoading';
 import FilterProduct from './FilterProduct';
 import SortBy from './SortBy';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
 
   const [visibleCarParts, setVisibleCarParts] = useState<CarPart[]>([]);
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false); // Add loading state
-
+  const navigate = useNavigate();
     useEffect(() => {
       // Initially, show the first batch of items
       const initialVisibleParts = carParts.slice(0, 10);
@@ -42,10 +43,10 @@ const Products = () => {
       return () => window.removeEventListener('scroll', handleScroll);
     }, [visibleIndex]);
     
-    const handleAddToCart = (carPart: CarPart) => {
-      // Implement your logic for adding the car part to the cart
-      console.log(`Added ${carPart.name} to cart.`);
+    const handleDetails = () => {
+        navigate('Main/Details')
     };
+
       return (
         <>
       <div className="bg-[#fef6f5] min-h-screen p-6" id="products">
@@ -57,7 +58,9 @@ const Products = () => {
         <div className="mr-4 w-1/4">
           <FilterProduct/>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 "
+        onClick={() => handleDetails()}
+        >
           {visibleCarParts.map((carPart) => (
             <div key={carPart.id} className="bg-white shadow-md p-4 rounded hover:-translate-y-1 hover:scale-100 hover: duration-300">
               <img
@@ -86,17 +89,23 @@ const Products = () => {
                   ></polygon>
                 </svg>
               </div>
-              <button
-                onClick={() => handleAddToCart(carPart)}
+              {/* <button
+                onClick={() => handleDetails()}
                 className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 text-white font-bold py-2 px-4 rounded"
               >
                 Add to Cart
-              </button>
+              </button> */}
             </div>
           ))}
           </div>
         </div>
-       
+        {loading && (
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
+    {/* Render the SkeletonLoading component when loading */}
+Loading.......
+    {/* Add more SkeletonLoading components as needed */}
+  </div>
+)}
       </div>
     </>
       );

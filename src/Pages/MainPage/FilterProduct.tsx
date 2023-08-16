@@ -55,7 +55,7 @@ const FilterProduct = () => {
 
         <button
           type="submit"
-          className="mt-4 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+          className="mt-4 px-4 py-2 text-white bg-gradient-to-r from-orange-400 to-orange-600 rounded"
         >
           Apply
         </button>
