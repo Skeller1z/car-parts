@@ -7,8 +7,6 @@ import Sticker from '../../../Assets/9709681.png'
 import Battery from '../../../Assets/battery.png'
 import Filter from '../../../Assets/filter.webp'
 
-
-
 const Items = () => {
     return (
         <div className="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36">
@@ -69,7 +67,8 @@ const Items = () => {
                     </div>
                     <span className='flex justify-center text-sm'>Wiper</span>
                 </div> */}
-            </div></div>
+            </div>
+            </div>
     )
 }
 

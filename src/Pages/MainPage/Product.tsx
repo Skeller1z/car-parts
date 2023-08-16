@@ -3,6 +3,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { carParts, CarPart } from './carPartsData';
 import SkeletonLoading from '../Components/SkeletonLoading';
+import FilterProduct from './FilterProduct';
+import SortBy from './SortBy';
 
 const Products = () => {
 
@@ -16,7 +18,7 @@ const Products = () => {
       setVisibleCarParts(initialVisibleParts);
       setVisibleIndex(initialVisibleParts.length);
     }, []);
-  
+    
     const handleScroll = () => {
       const bottom =
         Math.ceil(window.innerHeight + window.scrollY) >=
@@ -46,14 +48,18 @@ const Products = () => {
     };
       return (
         <>
-      <div className="bg-slate-100 min-h-screen p-6" id="products">
+      <div className="bg-[#fef6f5] min-h-screen p-6" id="products">
         <h1 className="text-2xl font-bold mb-4 text-center border-b border-gray-200">
           Our Car Part Products
         </h1>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="flex">
+        {/* ใส่ ProductFilter Component ไว้ทางซ้าย */}
+        <div className="mr-4 w-1/4">
+          <FilterProduct/>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 ">
           {visibleCarParts.map((carPart) => (
-            <div key={carPart.id} className="p-4 border rounded">
+            <div key={carPart.id} className="bg-white shadow-md p-4 rounded hover:-translate-y-1 hover:scale-100 hover: duration-300">
               <img
                 src={carPart.image}
                 alt={carPart.name}
@@ -82,27 +88,30 @@ const Products = () => {
               </div>
               <button
                 onClick={() => handleAddToCart(carPart)}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 text-white font-bold py-2 px-4 rounded"
               >
                 Add to Cart
               </button>
             </div>
           ))}
-        </div>
-        {loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
-            {/* Render the SkeletonLoading component when loading */}
-            <SkeletonLoading />
-            <SkeletonLoading />
-            <SkeletonLoading />
-            <SkeletonLoading />
-            <SkeletonLoading />
-            {/* Add more SkeletonLoading components as needed */}
           </div>
-        )}
+        </div>
+       
       </div>
     </>
       );
 }
 
 export default Products
+
+// {loading && (
+//   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4">
+//     {/* Render the SkeletonLoading component when loading */}
+//     <SkeletonLoading />
+//     <SkeletonLoading />
+//     <SkeletonLoading />
+//     <SkeletonLoading />
+//     <SkeletonLoading />
+//     {/* Add more SkeletonLoading components as needed */}
+//   </div>
+// )}

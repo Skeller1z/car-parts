@@ -25,7 +25,8 @@ const Navbar = (props: Props) => {
       <div className="flex items-center space-x-4">
         <Logo />
       </div>
-      <div className="flex items-center space-x-4 mx-8  flex-grow">
+
+      <div className="flex items-center space-x-4 mx-8 flex-grow">
         <SearchInput />
         <Cart />
       </div>
@@ -34,7 +35,6 @@ const Navbar = (props: Props) => {
         <LanguageSelector />
         <Notifications />
         <Profile />
-   
       </div>
     </nav>
     </>
