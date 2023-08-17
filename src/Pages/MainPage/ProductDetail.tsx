@@ -182,6 +182,7 @@ const ProductDetail = () => {
 
           </div>
         </div>
+        <Reviewer/>
       </div>
     </>
 
