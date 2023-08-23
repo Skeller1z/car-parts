@@ -11,7 +11,7 @@ const FilterProduct = () => {
   return (
     <div className="p-4">
       <form>
-        <label className="block mb-2 font-semibold">Filter by Price Range:</label>
+        <label className="block mb-2 font-semibold">Range</label>
         <div className="flex space-x-2 justify-center items-center">
           <input
             type="number"
@@ -28,7 +28,7 @@ const FilterProduct = () => {
           />
         </div>
         <hr className='mt-4'/>
-        <label className="block mt-2 mb-2 font-semibold">Filter by Category:</label>
+        <label className="block mt-2 mb-2 font-semibold">Category</label>
         <select
           value={category}
           className="w-full px-3 py-2 border rounded focus:ring focus:ring-blue-300"
@@ -39,7 +39,7 @@ const FilterProduct = () => {
           <option value="books">Books</option>
         </select>
         <hr className='mt-4'/>
-        <label className="block mt-2 mb-2 font-semibold">Filter by Rating:</label>
+        <label className="block mt-2 mb-2 font-semibold">Rating</label>
         <select
           value={rating}
           className="w-full px-3 py-2 border rounded focus:ring focus:ring-blue-300"
@@ -51,7 +51,6 @@ const FilterProduct = () => {
           <option value="4">4 stars</option>
           <option value="5">5 stars</option>
         </select>
-
 
         <button
           type="submit"
